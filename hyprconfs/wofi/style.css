@@ -1,0 +1,65 @@
+/* Theme: Rose-Pine */
+window {
+    margin: 0px;
+    background-color: #232136;
+    border-radius: 8px;
+    border: 2px solid #3e8fb0;
+    color: #e0def4;
+    font-family: 'CaskaydiaCove Nerd Font';
+    font-size: 14px;
+}
+
+#input {
+    margin: 5px;
+    border-radius: 0px;
+    border: none;
+    border-radius: 0px;;
+    color: #eb6f92;
+    background-color: #393552;
+    
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: #393552;
+    color: #232136;
+    border-radius: 0px;
+}
+
+#outer-box {
+    margin: 15px;
+    border: none;
+    background-color: #232136;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #e0def4;
+} 
+
+#entry:selected {
+    background-color: #9ccfd8;
+    color: #232136;
+    border-radius: 0px;;
+    outline: none;
+}
+
+#entry:selected * {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #9ccfd8;
+    color: #232136;
+    border-radius: 0px;;
+    outline: none;
+}
+
+image {
+    margin: 0 4px;
+}
