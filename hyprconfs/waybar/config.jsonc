@@ -10,9 +10,9 @@
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "network",
-    "bluetooth",
     "temperature",
     "memory",
+    "bluetooth",
     "battery",
     "pulseaudio",
     "backlight"
