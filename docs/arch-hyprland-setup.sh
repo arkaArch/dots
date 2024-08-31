@@ -47,6 +47,10 @@ sudo pacman -S grim slurp
 # Firmware updater
 sudo pacman -S fwupd
 
+# Bluetooth
+sudo pacman -S bluez-utils blueman
+sudo systemctl enable bluetooth.service
+
 
 # Cli tools:
 sudo pacman -S pacman-contrib tree git neofetch yt-dlp
