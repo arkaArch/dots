@@ -25,16 +25,18 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1: ", "2: ", "3: ", "4: ", "5: ", "6: ", "7: 󰢔", "8: 󱌾", "9: 󱌾" };
+static const char *tags[] = { "1:", "2:", "3:", "4:", "5:", "6:", "7:󰢔", "8:󱌾", "9:󱌾" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
+	/* class      instance     title       tags mask     isfloating   monitor */
+	{ "kitty",      NULL,       NULL,       0,            1,           -1 },
+	{ "Alacritty",  NULL,       NULL,       1<<3,         1,           -1 },
+	{ "Thunar",     NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",    NULL,       NULL,       1<<1,         0,           -1 },
 };
 
 /* layout(s) */
@@ -76,6 +78,10 @@ static const char *downlight[] = { "/home/arka/dots/scripts/change-light.sh", "d
 static const char *temp_notify[] = { "/home/arka/dots/scripts/temperature-stat.sh", NULL };
 static const char *diskspace_notify[] = { "/home/arka/dots/scripts/diskspace-stat.sh", NULL };
 
+static const char *lock[] = { "slock", NULL };
+static const char *files[] = { "kitty", "-e", "yazi", NULL };
+static const char *music[] = { "alacritty", "-e", "ncmpcpp", NULL };
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray, "-nf", col_ivory, "-sb", col_blue, "-sf", col_chiffon, NULL };
@@ -96,21 +102,26 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{0,                        XF86XK_AudioRaiseVolume,   spawn,   {.v=upvol} },
-    {0,                        XF86XK_AudioLowerVolume,   spawn,   {.v=downvol} },
-    {0,                        XF86XK_AudioMute,          spawn,   {.v=mutevol} },
-    {0,                        XF86XK_MonBrightnessUp,    spawn,   {.v=uplight} },
-    {0,                        XF86XK_MonBrightnessDown,  spawn,   {.v=downlight} },
-	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
+	{ 0,                        XF86XK_AudioRaiseVolume,   spawn,   {.v=upvol} },
+    { 0,                        XF86XK_AudioLowerVolume,   spawn,   {.v=downvol} },
+    { 0,                        XF86XK_AudioMute,          spawn,   {.v=mutevol} },
+    { 0,                        XF86XK_MonBrightnessUp,    spawn,   {.v=uplight} },
+    { 0,                        XF86XK_MonBrightnessDown,  spawn,   {.v=downlight} },
+    { MODKEY,                       XK_p,      spawn,          { .v=files } },
+    { MODKEY,                       XK_m,      spawn,          { .v=music } },
+    { MODKEY|ShiftMask,             XK_q,      spawn,          { .v=lock } },
+
+	{ ALTKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ ALTKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ ALTKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ ALTKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+	{ ALTKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_s,      togglefloating, {0} },
+	
+    { MODKEY|ShiftMask,             XK_s,      togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
