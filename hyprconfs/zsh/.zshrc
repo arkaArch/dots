@@ -7,7 +7,7 @@ autoload -U colors && colors
 
 # Prompt
 # PROMPT="%F{green}%1~%f %F{cyan}%% %f "
-RPROMPT="%F{red} %f%F{cyan}󰌽 %f"
+RPROMPT="%F{red} %f%F{cyan} %f"
 PROMPT="%F{red}[%f%F{green}%1~%f%F{red}]%f %F{cyan} %f "
 
 # Automatically cd into typed directory
